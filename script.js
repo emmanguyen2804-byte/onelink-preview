@@ -13,7 +13,7 @@ function addParam(url, param) {
   if (!p) return url;
 
   const u = new URL(url);
-  // param dạng "a=b" hoặc "a=b&c=d"
+  // param dạng "a=b" hoặc "a=b&c=d" nha
   p.split("&").forEach(kv => {
     const [k, v = ""] = kv.split("=");
     if (k) u.searchParams.set(k, v);
