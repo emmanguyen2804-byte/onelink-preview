@@ -1,3 +1,4 @@
+console.log("script.js loaded");
 const OG_WORKER =
   "https://og-proxy.emmanguyen2804.workers.dev/?url=";
 function normalizeUrl(url) {
