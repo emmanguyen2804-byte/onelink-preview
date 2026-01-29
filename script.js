@@ -54,7 +54,7 @@ function preview() {
         Mở link để xem preview (OG image/text hiển thị đúng trong app/chat).
       </div>
       <div style="margin-top:8px;">
-        <a href="${url}" target="_blank" rel="noopener">Open</a>
+        <a href="https://metatags.io/?url=${encodeURIComponent(url)}" target="_blank" rel="noopener noreferrer">Open (OG Preview)</a>
       </div>
     `;
     root.appendChild(card);
