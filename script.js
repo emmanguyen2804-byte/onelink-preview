@@ -50,42 +50,32 @@ function preview() {
   items.forEach(({ label, url }) => {
     const card = document.createElement("div");
     card.className = "card";
+
     card.innerHTML = `
       ${label ? `<div class="tag">${label}</div>` : ""}
       <div class="mono">URL<br>${url}</div>
-      <div class="muted" style="margin-top:8px;">
-        Mở link để xem preview (OG image/text hiển thị đúng trong app/chat).
-      </div>
-      card.innerHTML = `
-  ${label ? `<div class="tag">${label}</div>` : ""}
-  <div class="mono">URL<br>${url}</div>
-
-  <div class="og muted" style="margin-top:8px;">
-    Đang load OG preview...
-  </div>
-`;
+      <div class="og muted" style="margin-top:8px;">Đang load OG preview...</div>
     `;
+
     root.appendChild(card);
-  fetch(OG_WORKER + encodeURIComponent(url))
-  .then(res => res.json())
-  .then(og => {
-    const box = card.querySelector(".og");
 
-    if (!og || (!og.title && !og.description && !og.image)) {
-      box.innerHTML = `<span class="error">Không lấy được OG</span>`;
-      return;
-    }
-
-    box.innerHTML = `
-      ${og.title ? `<div><b>og:title</b><br>${og.title}</div>` : ""}
-      ${og.description ? `<div style="margin-top:4px;"><b>og:description</b><br>${og.description}</div>` : ""}
-      ${og.image ? `<img src="${og.image}" style="max-width:100%;margin-top:8px;border-radius:8px;" />` : ""}
-    `;
-  })
-  .catch(err => {
-    card.querySelector(".og").innerHTML =
-      `<span class="error">OG error</span>`;
-  });
+    fetch(OG_WORKER + encodeURIComponent(url))
+      .then(res => res.json())
+      .then(og => {
+        const box = card.querySelector(".og");
+        if (!og || (!og.title && !og.description && !og.image)) {
+          box.innerHTML = `<span class="error">Không lấy được OG</span>`;
+          return;
+        }
+        box.innerHTML = `
+          ${og.title ? `<div><b>og:title</b><br>${og.title}</div>` : ""}
+          ${og.description ? `<div style="margin-top:4px;"><b>og:description</b><br>${og.description}</div>` : ""}
+          ${og.image ? `<img src="${og.image}" style="max-width:100%;margin-top:8px;border-radius:8px;" />` : ""}
+        `;
+      })
+      .catch(() => {
+        card.querySelector(".og").innerHTML = `<span class="error">OG error</span>`;
+      });
   });
 }
 
