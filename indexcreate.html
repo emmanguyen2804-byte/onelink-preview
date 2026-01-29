@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OneLink OG Batch Preview</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <h1>OneLink OG Batch Preview</h1>
+  <p>Dán nhiều link (mỗi dòng 1 link, có thể kèm label)</p>
+
+  <textarea id="input" placeholder="en https://...\nkr https://..."></textarea>
+
+  <div class="row">
+    <input id="append" placeholder="Optional: append param to ALL URLs (vd: af_country=KR)" />
+    <button id="btn">Preview All</button>
+  </div>
+
+  <div id="count" class="muted"></div>
+  <div id="results"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
